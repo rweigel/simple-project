@@ -4,47 +4,19 @@ The size and complexity of this project are at the threshold of where it makes s
 
 # Install and Run
 
-There are three options. I will use the first.
-
-## Option 1: HelioCloud - Command Line
-
-If running on a PyHC 2024 Summer School HelioCloud instance, open a terminal from the launcher tab (see below)
-
-<details closed>
-<summary>Opening a terminal in HelioCloud</summary>
-(If you do not see a Launcher tab, click the +.)
-<br>    
-<img src="refs/heliocloud1.png" width="300px">
-<br>    
-<img src="refs/heliocloud2.png" width="300px">
-</details>
-
-```
-python main.py # creates main.log; see switches at top of file for options
-python plot.py # creates figures/field_lines.{pdf,png,svg}
-```
-
-## Option 2: HelioCloud - Notebook
-
-You can run as a Jupytext Notebook by right clicking, selecting "Open With" and then "Jupytext Notebook".
-
-<img src="refs/heliocloud3.png" width="300px">
-
-## Option 3: Laptop
-
 Open a terminal and enter
 
 ```
-git clone https://github.com/heliophysicsPy/summer-school-24
-cd summer-school-24/how-to/simple-project
-pip install scipy matplotlib
+git clone https://github.com/rweigel/simple-project
+cd simple-project
+# pip install scipy matplotlib if not on HelioCloud
 python main.py # creates main.log; see switches at top of file for options
-python plot.py # creates figures/field_lines.{pdf,png,svg}
+python plot.py # creates figures/field_lines.{png,svg}
 ```
 
 # Overview
 
-This repository contains code for experiments involving the comparison of field line tracing algorithms and the visualization of field lines. Packages exist for field line tracing (see [Related](#Related)), but to simplify the experiment and interpretation of results, we do not use them.
+This repository contains code for experiments involving comparing field line tracing algorithms and visualizing field lines. Packages exist for field line tracing (see [Related](#Related)), but to simplify the experiment and interpretation of results, we do not use them.
 
 The two primary functions in [`main.py`](main.py]) are `compare()` and `generate()`.
 
