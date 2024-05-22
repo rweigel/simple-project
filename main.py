@@ -147,13 +147,13 @@ def generate():
 
 logger = logger_init()
 
-if compare_methods == True:
+if compare_methods:
   compare()
 
-if test == True:
+if test:
   dipole_field_test()
 
-if generate_lines == True:
+if generate_lines:
   lines = generate()
 
   # Option 1 for saving data: NumPy's save function
