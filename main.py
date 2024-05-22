@@ -86,9 +86,10 @@ def const(yz):
 
 def test():
   dipole_field_test()
+  #TODO: Either add more tests or get rid of this function
 
 
-def compare():
+def compare(logger):
 
   def cross_equator(s, yz):
     return yz[1]
@@ -127,7 +128,7 @@ def compare():
   logger.info(f'RK45 stop const = {const(stop_yz45):.8f}')
 
 
-def generate():
+def generate(logger):
 
   s_eval = np.linspace(0, 2, 5)
   n_lines = 5
@@ -145,31 +146,36 @@ def generate():
   return lines
 
 
-logger = logger_init()
+def main():
+  logger = logger_init()
 
-if compare_methods == True:
-  compare()
+  if compare_methods == True:
+    compare(logger)
 
-if test == True:
-  dipole_field_test()
+  if test == True:
+    dipole_field_test()
 
-if generate_lines == True:
-  lines = generate()
+  if generate_lines == True:
+    lines = generate(logger)
 
-  # Option 1 for saving data: NumPy's save function
-  fname = 'data/lines.npy'
-  logger.info(f'Writing {fname}')
-  np.save(fname, lines)
-  logger.info(f'Wrote {fname}')
-
-  # Option 2 for saving data: CSV
-  # If there is any reason that we would want to inspect the numbers, save each
-  # field line in a separate CSV file.
-  for i in range(lines.shape[2]):
-    fname = f'data/line_{i}.csv'
-    np.savetxt(fname, lines[:,:,i], delimiter=',')
+    # Option 1 for saving data: NumPy's save function
+    fname = 'data/lines.npy'
+    logger.info(f'Writing {fname}')
+    np.save(fname, lines)
     logger.info(f'Wrote {fname}')
 
-  # For discussion:
-  #  1. What are the pros and cons of each option?
-  #  2. What about pkl file, HDF5, or CDF?
+    # Option 2 for saving data: CSV
+    # If there is any reason that we would want to inspect the numbers, save each
+    # field line in a separate CSV file.
+    for i in range(lines.shape[2]):
+      fname = f'data/line_{i}.csv'
+      np.savetxt(fname, lines[:,:,i], delimiter=',')
+      logger.info(f'Wrote {fname}')
+
+    # For discussion:
+    #  1. What are the pros and cons of each option?
+    #  2. What about pkl file, HDF5, or CDF?
+
+if __name__ == "__main__":
+  main()
+
