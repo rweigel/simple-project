@@ -18,6 +18,11 @@ def logger_init():
   logging.basicConfig(level=logging.INFO, handlers=handlers, format=format)
   return logging.getLogger(__name__)
 
+def logger_close():
+  import logging
+  for handler in logging.getLogger().handlers:
+    if isinstance(handler, logging.FileHandler):
+      handler.close()
 
 def dipole_field(yz):
   y, z = yz
@@ -173,3 +178,5 @@ if generate_lines:
   # For discussion:
   #  1. What are the pros and cons of each option?
   #  2. What about pkl file, HDF5, or CDF?
+
+logger_close() # Needed for windows
